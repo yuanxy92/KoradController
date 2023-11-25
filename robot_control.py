@@ -98,6 +98,46 @@ def crawl2(controllers):
         time.sleep(sleeptime)
     return
 
+def walk(controllers):
+    von0 = 7.0
+    von1 = 6.0
+    von11 = 3.0
+    von2 = 2.0
+    voff = 2.0
+    von_body1 = 4.0
+    von_body2 = 3.0
+    sleeptime = 1.0
+    
+    controllers['Body'].output(von_body1)
+    controllers['LF'].output(von2)
+    controllers['RF'].output(von2)
+    controllers['LB'].output(von2)
+    controllers['RB'].output(von2)
+    time.sleep(0.8)
+    
+    for idx in range(8):
+        for idx2 in range(2):
+            if idx2 == 0:
+                a1 = 'LB'
+                a2 = 'RF'
+            else:
+                a1 = 'RB'
+                a2 = 'LF'
+            controllers[a1].output(von1)
+            time.sleep(sleeptime)
+            controllers[a2].output(von0)
+            controllers['Body'].output(von_body1)
+            time.sleep(sleeptime)
+            controllers[a1].output(von11)
+            time.sleep(sleeptime)
+            controllers['Body'].output(von_body2)
+            controllers[a1].output(voff)
+            time.sleep(sleeptime)
+            controllers[a2].output(voff)
+            # time.sleep(sleeptime)
+            # time.sleep(sleeptime)
+    return
+
 id_part_dict = {'54019392': 'Body', 
                 '54015044': 'RB', 
                 '54019689': 'RF', 
@@ -112,6 +152,8 @@ for i in range(5):
     controllers[id_part_dict[f'{serial_num}']] = power
 
 enable(controllers)
-crawl2(controllers)
+walk(controllers)
+# crawl2(controllers)
 disable(controllers)
 
+a = 1
