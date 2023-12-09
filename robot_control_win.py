@@ -29,40 +29,21 @@ root = tkinter.Tk()
 my_font_l = Font(family="Arial", size=20, weight="bold")
 my_font = Font(family="Arial", size=15, weight="bold")
 voltage_step = 0.1
-def voltage_body_p():
-    controllers['Body'].channels[0].voltage = controllers['Body'].channels[0].voltage + voltage_step
-    print("Hello World!")
-def voltage_body_m():
-    controllers['Body'].channels[0].voltage = controllers['Body'].channels[0].voltage - voltage_step
-def voltage_LF_p():
-    print("Hello World!")
-def voltage_LF_m():
-    print("Hello World!")
-def voltage_RF_p():
-    print("Hello World!")
-def voltage_RF_m():
-    print("Hello World!")
-def voltage_LB_p():
-    print("Hello World!")
-def voltage_LB_m():
-    print("Hello World!")
-def voltage_RB_p():
-    print("Hello World!")
-def voltage_RB_m():
-    print("Hello World!")
 
-root.geometry('1000x600')
+root.geometry('1200x600')
 root.title('Pneumatic Soft Robot Controller')
 btn_width = 25
 btn_height = 3
 
+# ON/OFF button
 label_button_onoff = Label(root, text="ON/OFF", font=my_font_l, fg='red')
 label_button_onoff.grid(row=0, column=3, columnspan=1, sticky=N+S+W+E)
-btn_on = Button(root, text='Body\n+', width=btn_width, height=btn_height, font=my_font, command=voltage_body_p)
-btn_on.grid(row=0, column=3, rowspan=2, sticky=N+S)
-btn_off = Button(root, text='Body\n-', width=btn_width, height=btn_height, font=my_font, command=voltage_body_m)
-btn_off.grid(row=1, column=3, rowspan=2, sticky=N+S)
+btn_on = Button(root, text='ON', width=btn_width, height=btn_height, font=my_font, command=voltage_body_p)
+btn_on.grid(row=1, column=3, rowspan=2, sticky=N+S)
+btn_off = Button(root, text='OFF', width=btn_width, height=btn_height, font=my_font, command=voltage_body_m)
+btn_off.grid(row=3, column=3, rowspan=2, sticky=N+S)
 
+# Buttons to adjust the pressures of the body and legs
 label_button = Label(root, text="Buttons for voltage", font=my_font_l, fg='red')
 label_button.grid(row=0, column=0, columnspan=3, sticky=N+S+W+E)
 
@@ -89,6 +70,7 @@ btn_RB_p.grid(row=3, column=2, sticky=N+S+W+E)
 btn_RB_m = Button(root, text='Right hind leg\n-', width=btn_width, height=btn_height, font=my_font)
 btn_RB_m.grid(row=4, column=2, sticky=N+S+W+E)
 
+# Labels to show the current pressures
 label_current = Label(root, text="Current voltage:", font=my_font_l, fg='red')
 label_current.grid(row=5, column=0, columnspan=3, sticky=N+S+W+E)
 label_body = Label(root, text="Body voltage:\n", width=btn_width, height=btn_height, font=my_font)
@@ -104,6 +86,33 @@ label_RB.grid(row=7, column=2, sticky=N+S+W+E)
 
 root.mainloop()
 
+def voltage_body_p():
+    channel = controllers['Body'].channels[0]
+    channel.voltage = channel.output_voltage + voltage_step
+    label_body.config(text = f"Body voltage:\n{channel.output_voltage}")
 
+def voltage_body_m():
+    channel = controllers['Body'].channels[0]
+    channel.voltage = channel.output_voltage - voltage_step
+    label_body.config(text = f"Body voltage:\n{channel.output_voltage}")
 
-a = 1
+def voltage_LF_p():
+    channel = controllers['LF'].channels[0]
+    channel.voltage = channel.output_voltage - voltage_step
+    label_body.config(text = f"Left front leg voltage:\n{channel.output_voltage}")
+
+def voltage_LF_m():
+    print("Hello World!")
+    
+def voltage_RF_p():
+    print("Hello World!")
+def voltage_RF_m():
+    print("Hello World!")
+def voltage_LB_p():
+    print("Hello World!")
+def voltage_LB_m():
+    print("Hello World!")
+def voltage_RB_p():
+    print("Hello World!")
+def voltage_RB_m():
+    print("Hello World!")
