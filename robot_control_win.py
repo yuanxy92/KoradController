@@ -58,9 +58,9 @@ btn_height = 3
 
 label_button_onoff = Label(root, text="ON/OFF", font=my_font_l, fg='red')
 label_button_onoff.grid(row=0, column=3, columnspan=1, sticky=N+S+W+E)
-btn_on = Button(root, text='Body\n+', width=btn_width, height=btn_height, font=my_font, command=voltage_body_p)
+btn_on = Button(root, text='ON', width=btn_width, height=btn_height, font=my_font, command=voltage_body_p)
 btn_on.grid(row=0, column=3, rowspan=2, sticky=N+S)
-btn_off = Button(root, text='Body\n-', width=btn_width, height=btn_height, font=my_font, command=voltage_body_m)
+btn_off = Button(root, text='OFF', width=btn_width, height=btn_height, font=my_font, command=voltage_body_m)
 btn_off.grid(row=1, column=3, rowspan=2, sticky=N+S)
 
 label_button = Label(root, text="Buttons for voltage", font=my_font_l, fg='red')
