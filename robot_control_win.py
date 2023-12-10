@@ -35,6 +35,52 @@ root.title('Pneumatic Soft Robot Controller')
 btn_width = 25
 btn_height = 3
 
+# Labels to show the current pressures
+label_current = Label(root, text="Current voltage:", font=my_font_l, fg='red')
+label_current.grid(row=5, column=0, columnspan=3, sticky=N+S+W+E)
+label_body = Label(root, text="Body voltage:\n", width=btn_width, height=btn_height, font=my_font)
+label_body.grid(row=6, column=1, rowspan=2, sticky=N+S)
+label_LF = Label(root, text="Left front leg voltage:\n", width=btn_width, height=btn_height, font=my_font)
+label_LF.grid(row=6, column=0, sticky=N+S+W+E)
+label_RF = Label(root, text="Right front leg voltage:\n", width=btn_width, height=btn_height, font=my_font)
+label_RF.grid(row=6, column=2, sticky=N+S+W+E)
+label_LB = Label(root, text="Left hind leg voltage:\n", width=btn_width, height=btn_height, font=my_font)
+label_LB.grid(row=7, column=0, sticky=N+S+W+E)
+label_RB = Label(root, text="Right hind leg voltage:\n", width=btn_width, height=btn_height, font=my_font)
+label_RB.grid(row=7, column=2, sticky=N+S+W+E)
+
+def voltage_body_p():
+    channel = controllers['Body'].channels[0]
+    channel.voltage = channel.output_voltage + voltage_step
+    label_body.config(text = f"Body voltage:\n{channel.output_voltage}")
+
+def voltage_body_m():
+    channel = controllers['Body'].channels[0]
+    channel.voltage = channel.output_voltage - voltage_step
+    label_body.config(text = f"Body voltage:\n{channel.output_voltage}")
+
+def voltage_LF_p():
+    channel = controllers['LF'].channels[0]
+    channel.voltage = channel.output_voltage - voltage_step
+    label_body.config(text = f"Left front leg voltage:\n{channel.output_voltage}")
+
+def voltage_LF_m():
+    print("Hello World!")
+    
+def voltage_RF_p():
+    print("Hello World!")
+def voltage_RF_m():
+    print("Hello World!")
+def voltage_LB_p():
+    print("Hello World!")
+def voltage_LB_m():
+    print("Hello World!")
+def voltage_RB_p():
+    print("Hello World!")
+def voltage_RB_m():
+    print("Hello World!")
+
+
 # ON/OFF button
 label_button_onoff = Label(root, text="ON/OFF", font=my_font_l, fg='red')
 label_button_onoff.grid(row=0, column=3, columnspan=1, sticky=N+S+W+E)
@@ -70,49 +116,8 @@ btn_RB_p.grid(row=3, column=2, sticky=N+S+W+E)
 btn_RB_m = Button(root, text='Right hind leg\n-', width=btn_width, height=btn_height, font=my_font)
 btn_RB_m.grid(row=4, column=2, sticky=N+S+W+E)
 
-# Labels to show the current pressures
-label_current = Label(root, text="Current voltage:", font=my_font_l, fg='red')
-label_current.grid(row=5, column=0, columnspan=3, sticky=N+S+W+E)
-label_body = Label(root, text="Body voltage:\n", width=btn_width, height=btn_height, font=my_font)
-label_body.grid(row=6, column=1, rowspan=2, sticky=N+S)
-label_LF = Label(root, text="Left front leg voltage:\n", width=btn_width, height=btn_height, font=my_font)
-label_LF.grid(row=6, column=0, sticky=N+S+W+E)
-label_RF = Label(root, text="Right front leg voltage:\n", width=btn_width, height=btn_height, font=my_font)
-label_RF.grid(row=6, column=2, sticky=N+S+W+E)
-label_LB = Label(root, text="Left hind leg voltage:\n", width=btn_width, height=btn_height, font=my_font)
-label_LB.grid(row=7, column=0, sticky=N+S+W+E)
-label_RB = Label(root, text="Right hind leg voltage:\n", width=btn_width, height=btn_height, font=my_font)
-label_RB.grid(row=7, column=2, sticky=N+S+W+E)
+
 
 root.mainloop()
 
-def voltage_body_p():
-    channel = controllers['Body'].channels[0]
-    channel.voltage = channel.output_voltage + voltage_step
-    label_body.config(text = f"Body voltage:\n{channel.output_voltage}")
 
-def voltage_body_m():
-    channel = controllers['Body'].channels[0]
-    channel.voltage = channel.output_voltage - voltage_step
-    label_body.config(text = f"Body voltage:\n{channel.output_voltage}")
-
-def voltage_LF_p():
-    channel = controllers['LF'].channels[0]
-    channel.voltage = channel.output_voltage - voltage_step
-    label_body.config(text = f"Left front leg voltage:\n{channel.output_voltage}")
-
-def voltage_LF_m():
-    print("Hello World!")
-    
-def voltage_RF_p():
-    print("Hello World!")
-def voltage_RF_m():
-    print("Hello World!")
-def voltage_LB_p():
-    print("Hello World!")
-def voltage_LB_m():
-    print("Hello World!")
-def voltage_RB_p():
-    print("Hello World!")
-def voltage_RB_m():
-    print("Hello World!")
