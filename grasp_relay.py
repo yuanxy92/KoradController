@@ -20,7 +20,7 @@ class gas_control():
         self.controllers = controllers
         self.working_flag = False
 
-    def vaccum(self,target_voltage=5,duration=-1):
+    def vaccum(self,target_voltage=1,duration=-1):
         controllers = self.controllers
         #VAC是正负压气阀的负压   AB是两位三通阀
         # if self.working_flag:
@@ -61,12 +61,14 @@ class gas_control():
         self.working_flag = False
         
     #RB是正负压气阀的正压  body是比例阀  两位三通常态就在正压上
-    def grasp(self,target_voltage = 5.0,duration=-1):    
+    def grasp(self,target_voltage = 9.0,duration=-1):    
         controllers = self.controllers
         # if self.working_flag:
         #     print('working!!')
         #     return
         gate_key = 'BILI'
+        # self.relay_controllers.open("AB")
+        # time.sleep(1)
         self.relay_controllers.open("PRESS")
         # controllers['PRESS'].channels[0].voltage = 24
         # controllers['PRESS'].channels[0].current = 0.2
@@ -104,27 +106,27 @@ class gas_control():
 
 if __name__ == '__main__':
 
-    # g_control = gas_control()
-    # g_control.vaccum(duration=-1)
-    # time.sleep(5)
-    # g_control.vaccum_off()
-    # time.sleep(5)
-    # g_control.grasp(duration=-1)
-    # time.sleep(5)
-    # g_control.grasp_off()
+    g_control = gas_control()
+    g_control.vaccum(duration=-1)
+    time.sleep(5)
+    g_control.vaccum_off()
+    time.sleep(5)
+    g_control.grasp(duration=-1)
+    time.sleep(5)
+    g_control.grasp_off()
 
-    id_part_dict = {'KORAD KA3005P V5.8 SN:03384673': 'BILI',
-                    'KORAD KA3005P V5.8 SN:03384675': 'BILI2'}
-    relay_controllers = rc.RelayController("COM3")
-    # init power for press control
-    controllers = dict()
-    for i in [4,5]:
-        power = KoradSerial(f'COM{i}')
-        serial_num = power.model
-        print(serial_num)
-        controllers[id_part_dict[f'{serial_num}']] = power
-    controllers = controllers
-    working_flag = False
+    # id_part_dict = {'KORAD KA3005P V5.8 SN:03384673': 'BILI',
+    #                 'KORAD KA3005P V5.8 SN:03384675': 'BILI2'}
+    # relay_controllers = rc.RelayController("COM3")
+    # # init power for press control
+    # controllers = dict()
+    # for i in [4,5]:
+    #     power = KoradSerial(f'COM{i}')
+    #     serial_num = power.model
+    #     print(serial_num)
+    #     controllers[id_part_dict[f'{serial_num}']] = power
+    # controllers = controllers
+    # working_flag = False
     
-    a = 1
+    # a = 1
 
