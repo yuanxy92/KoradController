@@ -20,7 +20,7 @@ class gas_control():
         self.controllers = controllers
         self.working_flag = False
 
-    def vaccum(self,target_voltage=1,duration=-1):
+    def vaccum(self,target_voltage=5.0,duration=-1):
         controllers = self.controllers
         #VAC是正负压气阀的负压   AB是两位三通阀
         # if self.working_flag:
@@ -61,7 +61,7 @@ class gas_control():
         self.working_flag = False
         
     #RB是正负压气阀的正压  body是比例阀  两位三通常态就在正压上
-    def grasp(self,target_voltage = 9.0,duration=-1):    
+    def grasp(self,target_voltage = 5.0,duration=-1):    
         controllers = self.controllers
         # if self.working_flag:
         #     print('working!!')
@@ -107,11 +107,11 @@ class gas_control():
 if __name__ == '__main__':
 
     g_control = gas_control()
-    g_control.vaccum(duration=-1)
+    g_control.vaccum(target_voltage=5.0, duration=-1)
     time.sleep(5)
     g_control.vaccum_off()
     time.sleep(5)
-    g_control.grasp(duration=-1)
+    g_control.grasp(target_voltage=5.0, duration=-1)
     time.sleep(5)
     g_control.grasp_off()
 
